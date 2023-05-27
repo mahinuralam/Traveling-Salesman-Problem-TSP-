@@ -66,7 +66,21 @@ mp = {
 
 optimal_route = tsp(points)
 
-print("Optimal route to drop Gifts")
+print("Optimal route to drop Gifts:")
 
 for place in range(0, len(optimal_route)-1):
     print(mp[place])
+    
+"""
+Optimal route to drop Gifts:
+Uttara Branch
+City Bank Airport
+City Bank Nikunja
+City Bak Beside Uttara Diagonostic
+City Bank Mirpur 12
+City Bank Le Meridien
+City Bank Shaheed Sarani
+City Bank Narayanganj
+City Bank Pallabi
+City Bank JFP
+""""
