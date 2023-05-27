@@ -1,0 +1,72 @@
+import math
+import itertools
+
+def distance(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+def tsp(points):
+    n = len(points)
+    indices = range(n)
+
+    permutations = itertools.permutations(indices)
+    
+
+    min_dist = float('inf')
+    
+    optimal_route = []
+
+    for perm in permutations:
+        dist = 0
+        path = []
+
+        for i in range(n - 1):
+            curr = points[perm[i]]
+            next = points[perm[i + 1]]
+            dist += distance(curr, next)
+            path.append(perm[i])
+
+        last = points[perm[-1]]
+        first = points[perm[0]]
+        dist += distance(last, first)
+        path.append(perm[-1])
+        path.append(perm[0])
+
+        if dist < min_dist:
+            optimal_route = path
+
+    return optimal_route
+
+points = [
+    (23.8728568, 90.3984184),
+    (23.8513998, 90.3944536),
+    (23.8330429, 90.4092871),
+    (23.8679743, 90.3840879),
+    (23.8248293, 90.3551134),
+    (23.827149, 90.4106238),
+    (23.8629078, 90.3816318),
+    (23.8673789, 90.429412),
+    (23.8248938, 90.3549467),
+    (23.813316, 90.4147498)
+]
+
+mp = {
+    0: 'Uttara Branch',
+    1: 'City Bank Airport',
+    2: 'City Bank Nikunja',
+    3: 'City Bak Beside Uttara Diagonostic',
+    4: 'City Bank Mirpur 12',
+    5: 'City Bank Le Meridien',
+    6: 'City Bank Shaheed Sarani',
+    7: 'City Bank Narayanganj',
+    8: 'City Bank Pallabi',
+    9: 'City Bank JFP'
+}
+
+optimal_route = tsp(points)
+
+print("Optimal route to drop Gifts")
+
+for place in range(0, len(optimal_route)-1):
+    print(mp[place])
